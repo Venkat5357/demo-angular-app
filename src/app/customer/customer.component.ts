@@ -11,16 +11,16 @@ import { Customer } from './models/customer.model';
 })
 export class CustomerComponent implements OnInit {
 
-  customers: Observable<Customer[]> ;
+  customers: Customer[] ;
 
   constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
+    this.customerService.getCustomers('http://localhost:3000/users').subscribe((data: Customer[]) => {
+      this.customers = data;
+      console.log( this.customers);
+     });
   }
 
-
-  getvalues() {
-    this.customers = this.customerService.getCustomers('http://localhost:3000/users').
-  }
 
 }
